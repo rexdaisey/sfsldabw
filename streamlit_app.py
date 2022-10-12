@@ -13,6 +13,9 @@ streamlit.header('\N{flexed biceps} Champion reference here \N{flexed biceps}')
 
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 
+# make picklist
+streamlit.multiselect("select item here:", list(my_fruit_list.index))
+
 streamlit.dataframe(my_fruit_list)
 
 
