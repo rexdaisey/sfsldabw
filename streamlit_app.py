@@ -17,8 +17,11 @@ my_fruit_list = my_fruit_list.set_index('Fruit')
 # make picklist
 fruits_selected = streamlit.multiselect("select item here:", list(my_fruit_list.index),['Kiwifruit','Avocado'])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
-
-streamlit.dataframe(fruits_to_show)
+# Filtered List: 
+streamlit.dataframe(fruits_to_show) 
+# full list:
+streamlit.header('Full List')
+streamlit.dataframe(my_fruit_list)
 
 
 
