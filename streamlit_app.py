@@ -2,7 +2,7 @@ import streamlit # emoji's, etc.
 import pandas # read csv, etc. 
 import requests # fruityvice api respnse
 import snowflake.connector
-
+from urllib.error import URLError # needed for control of flow
 streamlit.title('Title Line A One')
 
 streamlit.header('Header One 1')
@@ -45,6 +45,6 @@ streamlit.dataframe(my_data_rows)
 
 record_to_add = streamlit.text_input('enter a record to add','jackfruit')  # make a default to avoid an error message
 streamlit.write('recrod to add here: ', record_to_add)
-
+my_cur.execute("insert into fruit_load_list values ('from streamlit')") # need to fix this later
 
 
