@@ -25,9 +25,9 @@ streamlit.dataframe(fruits_to_show)
 # streamlit.dataframe(my_fruit_list)
 
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
 # streamlit.text(fruityvice_response) # response code 200
-streamlit.text(fruityvice_response.json()) # writes raw json to screen
+# streamlit.text(fruityvice_response.json()) # writes raw json to screen
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-streamlit.dataframe(fruityvice_normalized)
+streamlit.dataframe(fruityvice_normalized) # writes response as a table
 
