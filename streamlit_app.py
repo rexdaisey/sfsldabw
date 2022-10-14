@@ -24,7 +24,7 @@ streamlit.dataframe(fruits_to_show)
 # streamlit.header('Full List')
 # streamlit.dataframe(my_fruit_list)
 
-fruit_choice = streamlit.text_input('enter a fruit?','Kiwi')
+fruit_choice = streamlit.text_input('enter a fruit?','Kiwi')  # make a default to avoid an error message
 streamlit.write('The user entered ', fruit_choice)
 
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
