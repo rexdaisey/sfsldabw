@@ -1,6 +1,7 @@
 import streamlit # emoji's, etc. 
 import pandas # read csv, etc. 
 import requests # fruityvice api respnse
+import snowflake.connector
 
 streamlit.title('Title Line A One')
 
