@@ -43,5 +43,8 @@ my_data_rows = my_cur.fetchall()
 streamlit.header("test data retrned from Snowflake:")
 streamlit.dataframe(my_data_rows)
 
+record_to_add = streamlit.text_input('enter a record to add','jackfruit')  # make a default to avoid an error message
+streamlit.write('recrod to add here: ', record_to_add)
+
 
 
