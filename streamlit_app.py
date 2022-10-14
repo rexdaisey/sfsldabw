@@ -1,5 +1,6 @@
 import streamlit # emoji's, etc. 
 import pandas # read csv, etc. 
+import requests # fruityvice api respnse
 
 streamlit.title('Title Line A One')
 
@@ -20,8 +21,10 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Filtered List: 
 streamlit.dataframe(fruits_to_show) 
 # full list:
-streamlit.header('Full List')
-streamlit.dataframe(my_fruit_list)
+# streamlit.header('Full List')
+# streamlit.dataframe(my_fruit_list)
 
 
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+streamlit.text(fruityvice_response)
 
