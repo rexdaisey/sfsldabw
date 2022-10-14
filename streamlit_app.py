@@ -27,7 +27,7 @@ streamlit.dataframe(fruits_to_show)
 fruit_choice = streamlit.text_input('enter a fruit?','Kiwi')
 streamlit.write('The user entered ', fruit_choice)
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 # streamlit.text(fruityvice_response) # response code 200
 # streamlit.text(fruityvice_response.json()) # writes raw json to screen
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
