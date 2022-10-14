@@ -24,6 +24,8 @@ streamlit.dataframe(fruits_to_show)
 # streamlit.header('Full List')
 # streamlit.dataframe(my_fruit_list)
 
+fruit_choice = streamlit.text_input('enter a fruit?','Kiwi')
+streamlit.write('The user entered ', fruit_choice)
 
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
 # streamlit.text(fruityvice_response) # response code 200
