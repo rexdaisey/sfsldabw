@@ -25,6 +25,16 @@ streamlit.dataframe(fruits_to_show)
 # streamlit.header('Full List')
 # streamlit.dataframe(my_fruit_list)
 # fruit_choice = streamlit.text_input('enter a fruit?','Kiwi')  # make a default to avoid an error message
+
+streamlit.header(' begin function code here ')
+def get_fruityvice_data(this_fruit_choice):
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    # streamlit.text(fruityvice_response) # response code 200
+    # streamlit.text(fruityvice_response.json()) # writes raw json to screen
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    # streamlit.dataframe(fruityvice_normalized) # writes response as a table       
+    return fruityvice_normalized
+
 streamlit.header(' begin try / except with nested if-else ')
 try: 
     fruit_choice = streamlit.text_input('enter a fruit?')  # make a default to avoid an error message
@@ -32,11 +42,7 @@ try:
     if not fruit_choice: 
         streamlit.error(" Err msg 1- needed fruit entry. " )
     else: 
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-        # streamlit.text(fruityvice_response) # response code 200
-        # streamlit.text(fruityvice_response.json()) # writes raw json to screen
-        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-        streamlit.dataframe(fruityvice_normalized) # writes response as a table
+        back_from_function = get_fruityvice_data(fruit_choice)
 
 except URLError as e: 
     streamlit.error()
