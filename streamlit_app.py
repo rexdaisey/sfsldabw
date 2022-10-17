@@ -24,17 +24,25 @@ streamlit.dataframe(fruits_to_show)
 # full list:
 # streamlit.header('Full List')
 # streamlit.dataframe(my_fruit_list)
+# fruit_choice = streamlit.text_input('enter a fruit?','Kiwi')  # make a default to avoid an error message
+streamlit.header(' begin try / except with nested if-else ')
+try: 
+    fruit_choice = streamlit.text_input('enter a fruit?')  # make a default to avoid an error message
+    streamlit.write('The user entered ', fruit_choice)
+    if not fruit_choice: 
+        streamlit.error(" Err msg 1- needed fruit entry. " )
+    else: 
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+        # streamlit.text(fruityvice_response) # response code 200
+        # streamlit.text(fruityvice_response.json()) # writes raw json to screen
+        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+        streamlit.dataframe(fruityvice_normalized) # writes response as a table
 
-fruit_choice = streamlit.text_input('enter a fruit?','Kiwi')  # make a default to avoid an error message
-streamlit.write('The user entered ', fruit_choice)
+except URLError as e: 
+    streamlit.error()
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-# streamlit.text(fruityvice_response) # response code 200
-# streamlit.text(fruityvice_response.json()) # writes raw json to screen
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-streamlit.dataframe(fruityvice_normalized) # writes response as a table
-
-
+streamlit.header(' begin snowflake connect ')
+    
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
