@@ -59,6 +59,7 @@ if streamlit.button('Get f Load List'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     # my_data_rows = my_cur.fetchall()
     my_data_rows = get_fruit_load_list()
+    my_cnx.close()
     streamlit.header("test data retrned from Snowflake:")
     streamlit.dataframe(my_data_rows)    
     # my_cur = my_cnx.cursor()
@@ -75,6 +76,7 @@ add_my_fruit = streamlit.text_input('enter a record to add')  # make a default t
 if streamlit.button('Add frt to table '):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     back_from_function = insert_row_snowflake(add_my_fruit)
+    my_cnx.close()
     streamlit.text(back_from_function)
     
 # streamlit.write('recrod to add here: ', record_to_add)
