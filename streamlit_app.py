@@ -68,7 +68,7 @@ if streamlit.button('Get f Load List'):
 streamlit.header(" begin data to add section ")
 def insert_row_snowflake(new_fruit): 
     with my_cnx.cursor() as my_cur:
-        my_cur.execute("insert into fruit_load_list values ('from streamlit')") # need to fix this later
+        my_cur.execute("insert into fruit_load_list values ('" + new_fruit + "')") # now takes variable
         return "added new data " + new_fruit
     
 add_my_fruit = streamlit.text_input('enter a record to add')  # make a default to avoid an error message
