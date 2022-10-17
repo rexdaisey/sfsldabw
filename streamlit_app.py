@@ -66,9 +66,15 @@ if streamlit.button('Get f Load List'):
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 
 streamlit.header(" begin data to add section ")
-
-record_to_add = streamlit.text_input('enter a record to add','jackfruit')  # make a default to avoid an error message
-streamlit.write('recrod to add here: ', record_to_add)
-my_cur.execute("insert into fruit_load_list values ('from streamlit')") # need to fix this later
-
-
+def insert_row_snowflake(new_fruit): 
+    with my_cnx.cursor() as my_cur:
+        my_cur.execute("insert into fruit_load_list values ('from streamlit')") # need to fix this later
+        return "added new data " + new_fruit
+    
+add_my_fruit = streamlit.text_input('enter a record to add')  # make a default to avoid an error message
+if streamlit.button('Add frt to table '):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    back_from_function = insert_row_snowflake(add_my_fruit)
+    streamlit.text(back_from_function)
+    
+# streamlit.write('recrod to add here: ', record_to_add)
